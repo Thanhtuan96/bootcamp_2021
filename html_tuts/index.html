@@ -41,5 +41,27 @@
       <button>submit</button>
     
     </form>
+    <form action="lazy">
+      <p>
+        <label for="meal">Please select an Entree</label>
+        <select name="meal" id="meal">
+          <option value="fish">fish</option>
+          <option value="meat">meat</option>
+          <option value="veg">vegetarian</option>
+        </select>
+      </p>
+      <!-- range -->
+      <p>
+        <label for="cheese">how much chess do you wants</label>
+        <input type="range" id="cheese" min="1" max="100" value="75" name="cheese_level">
+        <label for=""></label>
+      </p>
+      <p>
+        <label for="resquest">Any Special Resquest</label>
+        <textarea name="comment" id="resquest" cols="30" rows="10" placeholder="write somthing here"></textarea>
+      </p>
+      <button>submit</button>
+    </form>
+   
   </body>
 </html>
