@@ -11,26 +11,29 @@
     <form action="/registration">
       <p>
         <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" />
+        <input type="text" name="firstName" id="firstName" required />
         <label for="lastName">Last Name</label>
         <input type="text" name="lastName" id="lastName" />
       </p>
       <p>
-        <label for="raceName">
-          <input type="radio" name="raceName" id="funRun5k" />
-          <label for="funRun5k">funRun5k</label>
-          <input type="radio" name="raceName" id="halfMarathon" />
-          <label for="halfMarathon">Half Marathon</label>
-          <input type="radio" name="raceName" id="fullMarathone" />
-          <label for="funRun5k">Full Marathon</label>
+        <label for="raceName">select a race
         </label>
+        <input type="radio" name="raceName" id="funRun5k" />
+        <label for="funRun5k">funRun5k</label>
+        <input type="radio" name="raceName" id="halfMarathon" />
+        <label for="halfMarathon">Half Marathon</label>
+        <input type="radio" name="raceName" id="fullMarathone" />
+        <label for="funRun5k">Full Marathon</label>
       </p>
-      <p>Select Age group</p>
+
+      <label for="division">Select Age group</label>
       <select name="raceName" id="raceName">
-        <option value="funRun5k">fun Run 5k</option>
-        <option value="halfMarathon">Half Marathon</option>
-        <option value="fullMarathon">Full Marathon</option>
+        <option value="funRun5k" id="division">fun Run 5k</option>
+        <option value="halfMarathon" id="division">Half Marathon</option>
+        <option value="fullMarathon" id="division">Full Marathon</option>
       </select>
+    </br>
+      <button>Register</button>
     </form>
   </body>
 </html>
