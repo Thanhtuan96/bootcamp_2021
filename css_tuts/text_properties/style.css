@@ -16,3 +16,8 @@ p {
 a {
   text-decoration: none;
 }
+
+button:hover {
+  transition: linear 3ms red;
+  background-color: rgb(181, 100, 197);
+}
