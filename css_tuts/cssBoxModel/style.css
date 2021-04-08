@@ -15,4 +15,5 @@ h1 {
   border: 1px solid red;
   box-shadow: 1px 1px gray;
   box-sizing: border-box;
+  box-shadow: 3px 3px gray;
 }
