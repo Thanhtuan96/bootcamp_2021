@@ -1,0 +1,30 @@
+/* section {
+    width: 500px;
+    height: 500px;
+    background-color: magenta;
+    box-sizing: border-box;
+    } */
+
+#rgba {
+  padding: 15px;
+  height: 50%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* postion properties */
+div {
+  width: 150px;
+  height: 150px;
+  background-color: gray;
+  border: 2px solid black;
+  display: inline-block;
+}
+
+#middle {
+  background-color: cadetblue;
+}
+
+#static #middle {
+  position: fixed;
+}
