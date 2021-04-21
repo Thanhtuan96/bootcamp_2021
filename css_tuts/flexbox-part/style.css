@@ -1,0 +1,33 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  background-color: #4b57ad;
+  width: 90%;
+  height: 500px;
+  margin: 0 auto;
+  border: 5px solid #4b57ad;
+  flex-wrap: wrap;
+  color: white;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  font-size: 4em;
+  height: 200px;
+  width: 200px;
+}
+
+.div1 {
+  flex-shrink: 1;
+}
