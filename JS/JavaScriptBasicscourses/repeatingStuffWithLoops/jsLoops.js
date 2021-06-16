@@ -31,3 +31,5 @@ for (let i = 1; i <= 10; i++) {
     console.log(`      j is :${j}`);
   }
 }
+
+// writing guess game
