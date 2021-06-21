@@ -15,21 +15,36 @@ do {
 
 // expected 25 20 15 10 5 0
 
-const people = ['Tuan', 'Thanh', 'Park'];
+// const people = ['Tuan', 'Thanh', 'Park'];
 
-for (let i = 0; i < people.length; i++) {
-  console.log(people[i].toUpperCase());
+// for (let i = 0; i < people.length; i++) {
+//   console.log(people[i].toUpperCase());
+// }
+
+// for (person of people) {
+//   console.log(person.toUpperCase());
+// }
+
+// for (let i = 1; i <= 10; i++) {
+//   console.log(`i is: ${i}`);
+//   for (let j = 1; j < 4; j++) {
+//     console.log(`      j is :${j}`);
+//   }
+// }
+
+//IteratingOverObjects
+
+const testScores = {
+  keenan: 80,
+  damon: 50,
+  shawn: 50,
+  kim: 70,
+};
+
+for (let person in testScores) {
+  console.log(person);
 }
 
-for (person of people) {
-  console.log(person.toUpperCase());
+for (let score in testScores) {
+  console.log(score);
 }
-
-for (let i = 1; i <= 10; i++) {
-  console.log(`i is: ${i}`);
-  for (let j = 1; j < 4; j++) {
-    console.log(`      j is :${j}`);
-  }
-}
-
-// writing guess game
