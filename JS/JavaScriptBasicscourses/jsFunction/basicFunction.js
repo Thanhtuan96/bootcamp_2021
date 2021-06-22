@@ -17,13 +17,13 @@
 
 // greeting('Nam Anh');
 
-// let array =  [1,2,3,4]
+let array =  [1,2,3,4]
 
-// function sumArray(...args){
-//     console.log(typeof(args[0][0]))
-// }
+function sumArray(...args){
+    console.log(typeof(args[0][0]))
+}
 
-// sumArray(array)
+sumArray(array)
 
 let days = {
   1: 'Monday',
