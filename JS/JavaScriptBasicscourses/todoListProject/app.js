@@ -15,7 +15,7 @@ while (input !== 'quit' && input !== 'q') {
     }
   } else if (input === 'delete') {
     let deleteIndex = prompt('what todo you want to remove?');
-    console.log(todos.slice(deleteIndex, 2));
+    console.log(todos.slice(deleteIndex));
     console.log(todos);
     console.log(`${deleteIndex} was removed!!!`);
   }
