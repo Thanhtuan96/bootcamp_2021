@@ -32,7 +32,6 @@ const dataFromForm = {
 }
 
 const newUser = { ...dataFromForm,id: 2345, isAdmin: false}
-
 console.log(newUser)
 
 
@@ -45,7 +44,7 @@ console.log(newUser)
 // Not available inside of arrow funcitons!!
 
 function sum(...args){
-    console.log(args)
+console.log(args)
 }
 
 function raceResults(gold,silver,...everyoneELse){

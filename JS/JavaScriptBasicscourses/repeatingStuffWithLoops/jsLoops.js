@@ -14,7 +14,7 @@ do {
 } while (i >= 0);
 
 // expected 25 20 15 10 5 0
-
+das
 // const people = ['Tuan', 'Thanh', 'Park'];
 
 // for (let i = 0; i < people.length; i++) {
