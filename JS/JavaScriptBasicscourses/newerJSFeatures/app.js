@@ -56,3 +56,11 @@ function raceResults(gold,silver,...everyoneELse){
 sum([1,2,3,4,5,6,6])
 
 raceResults('Tuan','Park','Nam Anh', 'Park')
+
+//destructuring array
+
+const scores = [23123,123123,12312312,1323123123,1233123123,123]
+
+const highscore = scores[ 0];
+
+
