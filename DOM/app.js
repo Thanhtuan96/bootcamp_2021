@@ -18,3 +18,12 @@
 // 17. previousSibling()
 // 18. style()
 
+let container = document.querySelector('.container')
+console.log(container)
+
+for(let i = 1; i< 350; i++){
+    const img = document.createElement('img');
+    img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
+
+    container.appendChild(img)
+}
