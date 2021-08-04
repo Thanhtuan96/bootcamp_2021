@@ -4,22 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Score Keeper</title>
   </head>
   <body>
-    <input class="container">
-      <img src="" alt="" />
+    <div class="container">
+      <img
+        class="gameImg"
+        src="https://images.unsplash.com/photo-1593786481097-cf281dd12e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+        alt="sport image"
+      />
       <h1>score keeper</h1>
 
       <h1><span id="firstScore">0</span> to <span id="secondScore">0</span></h1>
-      <button id="p1btn">+1 score person 1</button><button id="p2btn">+1 score person 2</button>
-      <button id="reset">reset</button>
-      <select name="" id="">
+      <div class="btnContainer">
+        <button id="p1btn">+1 score person 1</button>
+        <button id="reset">reset</button>
+
+        <button id="p2btn">+1 score person 2</button>
+      </div>
+      <div class="scoreSelection">
+        <h3>playing to</h3>
+        <select name="" id="selectedScore" defaultValue="3">
           <option value="1">1</option>
-          <option value="1">1</option>
-          <option value="1">1</option>
-          <option value="1">1</option>
-      </select>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+        </select>
+      </div>
       <script src="./app.js"></script>
     </div>
   </body>
