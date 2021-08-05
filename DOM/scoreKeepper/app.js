@@ -38,14 +38,6 @@ p2btn.addEventListener('click', function () {
 
 resetbtn.addEventListener('click', reset);
 
-function isWin(a, b) {
-  let inputScore = document.querySelector('#selectedScore').value;
-  if (a >= inputScore) {
-    alert(`p1 won`);
-  } else if (b >= inputScore) {
-    alert(`p2 wonn`);
-  }
-}
 
 function reset() {
   isGameOver = false;
