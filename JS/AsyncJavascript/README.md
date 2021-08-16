@@ -17,3 +17,111 @@ const isRightTriangle = (a, b, c) => {
 
 isRightTriangle(3, 4, 5);
 ```
+
+# Web Api & Single thread
+
+## what is means
+
+at any given point in time, that single JS thread is running at most one line of JS code
+
+- Browsers come with Web APIs that are able to handle certain tasks in requests or setTimeOut
+
+- The JS call stack recognizes these Web API funcitons and passes them off to the browser to take care of
+
+- Once the browser finishes those tasks, they return and are pushed on to the stack as a call back
+
+
+# Callback Hells
+## what is call back hells!
+
+```JS
+setTimeout(() => {
+  document.body.style.backgroundColor = 'red';
+  setTimeout(() => {
+    document.body.style.backgroundColor = 'orange';
+    setTimeout(() => {
+      document.body.style.backgroundColor = 'blue';
+    }, 3000);
+  }, 2000);
+}, 1000);
+```
+
+that is call back hell. To avoid it we can rewrite code like this
+
+```JS
+const delayedColorChange = (newColor, delay)=>{
+  setTimeOut(()=>{
+    document.body.style.backgroundColor = newColor;
+  },delay)
+}
+
+delayedColorChange('red',2000)
+```
+
+# Enter Promises
+## what is promises in JS
+
+- A promise in an object representing the eventual completion or failure of all asynchoronous operation
+
+A Promise is in one of these states:
+
+- pending: initial state, neither fulfilled nor rejected.
+- ulfilled: meaning that the operation was completed successfully.
+- rejected: meaning that the operation failed.
+
+A pending promise can either be fulfilled with a value or rejected with a reason (error). When either of these options happens, the associated handlers queued up by a promise's then method are called. If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.
+
+![alt text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png)
+
+below is example of promise
+
+```JS
+const fakeRequestPromise = (url) => {
+  return new Promise((res, rej) => {
+    const delay = Math.floor(Math.random() * 4500) + 500;
+    setTimeout(() => {
+      if (delay > 4000) {
+        rej('Connection Timout:(!');
+      } else {
+        res(`Here is your fake data from ${url}`);
+      }
+    }, delay);
+  });
+};
+
+fakeRequestPromise('books.com')
+  .then(() => {
+    console.log('It worked!!');
+    fakeRequestPromise('books.com/page1')
+      .then(() => {
+        console.log('It worked (page 2)');
+      })
+      .catch(() => {
+        console.log('It not worked (page2 )');
+      });
+  })
+  .catch(() => {
+    console.log('It not worked');
+  });
+  ```
+
+
+and we can using promise like example below
+
+```JS
+fakeRequestPromise('yelp.com/api/coffee/page1')
+  .then(() => {
+    console.log('IT WORKED!!! ( page 1)');
+    return fakeRequestPromise('yelp.com/api/coffee/page2');
+  })
+  .then(() => {
+    console.log('IT WORKED !!! (page 2)');
+    return fakeRequestPromise('yelp.com/api/coffee/page3');
+  })
+  .then(() => {
+    console.log('IT WORKED!!! (page 3)');
+  })
+  .catch(() => {
+    console.log('OH NO, A REQUEST FAILED!!!');
+  });
+```
