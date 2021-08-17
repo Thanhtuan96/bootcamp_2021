@@ -69,7 +69,7 @@ A Promise is in one of these states:
 - ulfilled: meaning that the operation was completed successfully.
 - rejected: meaning that the operation failed.
 
-A pending promise can either be fulfilled with a value or rejected with a reason (error). When either of these options happens, the associated handlers queued up by a promise's then method are called. If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.
+>A pending promise can either be fulfilled with a value or rejected with a reason (error). When either of these options happens, the associated handlers queued up by a promise's then method are called. If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.
 
 ![alt text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png)
 
@@ -125,3 +125,31 @@ fakeRequestPromise('yelp.com/api/coffee/page1')
     console.log('OH NO, A REQUEST FAILED!!!');
   });
 ```
+
+# The async functions keyword
+
+> a newer and cleaner syntax for working with async code !
+Syntax "makeup" for promises 
+
+- 2 pieces
+  - async
+  - await 
+
+### 1. The async key word
+
+- Async funcitons always return a promise
+- If the funciton returns a value, the promise will be resolved with that value
+- If the funciton throws an exception, the promise will be rejected
+
+for example:
+
+```JS
+ async function hello(){
+   return 'hey guy'
+ };
+ hello() // Promise {<resolve>: 'hey guy'}
+ async function ohError(){
+   throw new Error('oh no , error!')
+ };
+ ohError() // Promise {<rejected>: 'oh no, error!'}
+ ```

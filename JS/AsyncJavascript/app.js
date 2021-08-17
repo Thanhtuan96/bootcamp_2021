@@ -32,30 +32,30 @@
 //so we should learn about Promises, or asyns await
 
 //DEMO : fakeRequest using call back
-const fakeRequestCallback = (url, success, failure) => {
-  const delay = Math.floor(Math.random() * 4500) + 500;
-  setTimeout(() => {
-    if (delay > 4000) {
-      failure('Connection Timout;)))! ');
-    } else {
-      success(`here is your fake data from ${url}`);
-    }
-  }, delay);
-};
+// const fakeRequestCallback = (url, success, failure) => {
+//   const delay = Math.floor(Math.random() * 4500) + 500;
+//   setTimeout(() => {
+//     if (delay > 4000) {
+//       failure('Connection Timout;)))! ');
+//     } else {
+//       success(`here is your fake data from ${url}`);
+//     }
+//   }, delay);
+// };
 
-//DEMO : fakeRequest using Promises
-const fakeRequestPromise = (url) => {
-  return new Promise((res, rej) => {
-    const delay = Math.floor(Math.random() * 4500) + 500;
-    setTimeout(() => {
-      if (delay > 4000) {
-        rej('Connection Timout:(!');
-      } else {
-        res(`Here is your fake data from ${url}`);
-      }
-    }, delay);
-  });
-};
+// //DEMO : fakeRequest using Promises
+// const fakeRequestPromise = (url) => {
+//   return new Promise((res, rej) => {
+//     const delay = Math.floor(Math.random() * 4500) + 500;
+//     setTimeout(() => {
+//       if (delay > 4000) {
+//         rej('Connection Timout:(!');
+//       } else {
+//         res(`Here is your fake data from ${url}`);
+//       }
+//     }, delay);
+//   });
+// };
 
 // fakeRequestPromise('books.com')
 //   .then(() => {
@@ -74,18 +74,51 @@ const fakeRequestPromise = (url) => {
 
 // or we can use promise like this
 
-fakeRequestPromise('yelp.com/api/coffee/page1')
-  .then(() => {
-    console.log('IT WORKED!!! ( page 1)');
-    return fakeRequestPromise('yelp.com/api/coffee/page2');
-  })
-  .then(() => {
-    console.log('IT WORKED !!! (page 2)');
-    return fakeRequestPromise('yelp.com/api/coffee/page3');
-  })
-  .then(() => {
-    console.log('IT WORKED!!! (page 3)');
-  })
-  .catch(() => {
-    console.log('OH NO, A REQUEST FAILED!!!');
-  });
+// fakeRequestPromise('yelp.com/api/coffee/page1')
+//   .then(() => {
+//     console.log('IT WORKED!!! ( page 1)');
+//     return fakeRequestPromise('yelp.com/api/coffee/page2');
+//   })
+//   .then(() => {
+//     console.log('IT WORKED !!! (page 2)');
+//     return fakeRequestPromise('yelp.com/api/coffee/page3');
+//   })
+//   .then(() => {
+//     console.log('IT WORKED!!! (page 3)');
+//   })
+//   .catch(() => {
+//     console.log('OH NO, A REQUEST FAILED!!!');
+//   });
+
+//create our promise
+
+// const delayedColorChange = (newColor, delay, doNext) => {
+//   setTimeout(() => {
+//     document.body.style.backgroundColor = newColor;
+//     doNext();
+//   }, delay);
+// };
+
+// delayedColorChange('red', 3000, () => {
+//   delayedColorChange('blue', 4000);
+// });
+
+//we can also rewrite this function using promise like this
+
+// const delayedColorChange = (color, delay) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       document.body.style.backgroundColor = color;
+//       resolve();
+//     }, delay);
+//   });
+// };
+
+// delayedColorChange('red', 1000)
+//   .then(() => delayedColorChange('orange', 2000))
+//   .then(() => delayedColorChange('blue', 2000))
+//   .then(() => delayedColorChange('green', 2000));
+
+const delayedColorChange = async () => {};
+
+console.log(delayedColorChange());
