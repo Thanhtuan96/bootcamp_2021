@@ -153,3 +153,10 @@ for example:
  };
  ohError() // Promise {<rejected>: 'oh no, error!'}
  ```
+
+
+ ### 2. The await keyword
+
+ - we can only use the await keyword inside of functions decleared with async.
+ - await will pause the execution of the funciton , waiting for a promise to be resolved
+ 
