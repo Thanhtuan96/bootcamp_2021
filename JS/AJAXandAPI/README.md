@@ -1,6 +1,6 @@
 # AJAX's and API
 
-## Requests in Javascript 
+## Requests in Javascript
 
 - XMLHTTP
 - FETCH
@@ -9,6 +9,7 @@
 ## 1. So what is AJAX
 
 stand for :
+
 - Asynchoronous
 - JAVASCRIPT
 - AND
@@ -37,3 +38,120 @@ Sơ đồ hoạt động: -->
 <!-- Web API là một phương thức dùng để cho phép các ứng dụng khác nhau có thể giao tiếp, trao đổi dữ liệu qua lại. Dữ liệu được Web API trả lại thường ở dạng JSON hoặc XML thông qua giao thức HTTP hoặc HTTPS. -->
 
 ![](https://topdev.vn/blog/wp-content/uploads/2019/06/API-696x364.png)
+
+## 3. So what is JSON
+
+is standed for :
+
+- **J**ava
+- **S**cript
+- **_O_**bject
+- **N**otation
+
+**Introducing JSON** https://www.json.org/json-en.html
+
+# Using Postman to see request to server
+
+link download postMan (https://www.postman.com/)
+
+## Query String and Header
+
+A query string is a part of a uniform resource locator (URL) that assigns values to specified parameters. A query string commonly includes fields added to a base URL by a Web browser or other client application, for example as part of an HTML form.[1]
+
+A web server can handle a Hypertext Transfer Protocol (HTTP) request either by reading a file from its file system based on the URL path or by handling the request using logic that is specific to the type of resource. In cases where special logic is invoked, the query string will be available to that logic for use in its processing, along with the path component of the URL.
+
+resource to voke:
+
+- tvmaze
+- openWeather
+- icanhazdaojoke
+
+# XMLHttp Request
+
+- The "origin" way of sending requests via JS
+- Does not support promises, so...lots of callbacks
+- WTF is going on with the weird capitalization?
+- clunky syntax that I find difficult to remember
+
+```JS
+const req = new XMLHttpRequest();
+
+req.onload = function () {
+  console.log('all done with request!!');
+  console.log(this);
+  const data = JSON.parse(this.responseText);
+  console.log(data.ticker.price);
+};
+
+req.onerror = function () {
+  console.log('ERROR!!!');
+  console.log(this);
+};
+
+req.open('GET', 'https://api.cryptonator.com/api/ticker/btc-usd');
+
+req.send();
+```
+
+# Fletch API
+
+- The newer way of making requests via JS
+- Supports promises
+- Not supported in IE
+
+using with promises
+
+```JS
+fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data.ticker);
+  })
+  .catch((e) => {
+    console.log(`oh no... ${e}`);
+  });
+```
+
+using with async/await
+
+```JS
+const fetchBitcoinPrice = async () => {
+  try {
+    const res = await fetch('https://api.cryptonator.com/api/ticker/btc-usd');
+    const data = await res.json();
+    console.log(data.ticker.price);
+  } catch (e) {
+    console.log('Something went wrong!!!', e);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', fetchBitcoinPrice);
+```
+
+# Axios to make request
+
+**a library for making http requests**
+
+Axios usage: (https://github.com/axios/axios)
+
+```JS
+axios.get('https://api.cryptonator.com/api/ticker/btc-usd').then((res) => {
+  console.log(res.data.ticker.price);
+});
+```
+
+### set Header of request with axios
+
+icanhazdadjoke API(https://icanhazdadjoke.com/api)
+
+```JS
+const getDadJoke = async () => {
+  const config = { headers: { Accept: 'application/json' } };
+  const res = await axios.get('https://icanhazdadjoke.com/', config);
+  console.log(res);
+};
+
+document.addEventListener('DOMContentLoaded', getDadJoke);
+```
