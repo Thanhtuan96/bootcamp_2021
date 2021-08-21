@@ -1,6 +1,7 @@
 const form = document.querySelector('#searchForm');
 const imgContainer = document.querySelector('.row');
 
+// interact with form to get data
 form.addEventListener('submit', (e) => {
   let titles = [];
   e.preventDefault();
@@ -11,16 +12,17 @@ form.addEventListener('submit', (e) => {
   form.elements.q.value = '';
 });
 
+// get data from tvmaze api function
 const getTvShowData = async (key) => {
   const res = await axios.get(`https://api.tvmaze.com/search/shows?q=${key}`);
   return res.data;
 };
 
+// display archived data in to web
 const displayData = (data) => {
   const displayResults = data
     .map((item) => {
       return `
-
             <div class="card col-sm-6" style="width:25%;">
             <img src=${
               item.show.image === null
