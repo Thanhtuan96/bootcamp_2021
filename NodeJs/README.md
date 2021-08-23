@@ -6,9 +6,9 @@
 
 ## 2. What do people build with nodeJs
 
-- Web servers
+- Web servers (ExpressJS)
 - Command Line Tools
-- Native Apps (VSCode is a Node app!!)
+- Native Apps (Slack, VSCode is a Node app!!)
 - Video Games
 - Drone Software
 - A whole lot more!!!!
