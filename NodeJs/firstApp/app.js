@@ -1,36 +1,25 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const port = 3000;
+
+app.use(express.static('public'));
 // any time we got request below code will run
 // app.use((req,res)=>{
 //     console.log('we go ta new request fron client')
 //     res.send('hello we got your request')
 // })
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/employee', (req, res) => {
-  res.send('this is employee page');
-});
+app.get('/rand', (req, res) => {
+  const randNum = Math.floor(Math.random() * 1000) + 1;
 
-app.get('/employees', (req, res) => {
-  res.send('this is all employees page');
-});
-
-app.get('/employee/:id', (req, res) => {
-  const { id } = req.params;
-  res.send(`this page is page of id: ${id} employee`);
-});
-
-app.get('/search', (req, res) => {
-  const { name, age } = req.query;
-  !name && !age
-    ? res.send('nothing to find')
-    : res.send(`${name} ${!age ? 'private' : age}`);
-  console.log({ name, age });
+  res.render('random', { rand: randNum });
 });
 
 app.listen(port, () => {
