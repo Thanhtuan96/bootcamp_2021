@@ -1,0 +1,22 @@
+html(lang="en")
+    include ./commonTemplate/htmlHeader
+    body 
+        div.container-fluid
+            form.row.g-3(action="/users/"+ user.id + "?_method=PATCH", method="post")
+                form.row.g-3
+                    .col-md-6
+                        label.form-label(for='inputEmail4', name='email') Email
+                        input#inputEmail4.form-control(type='email',name='email', value= user.email)
+                    .col-md-6
+                        label.form-label(for='inputEmail4', name='name') Name
+                        input#inputEmail4.form-control(type='text', name='name', value= user.name)
+                    .col-md-6
+                        label.form-label(for='inputPassword4', ) Age
+                        input#inputPassword4.form-control(type='number',name='age', value= user.age)
+
+                    .col-md-12
+                        label.form-label(for='inputCity') City
+                        input#inputCity.form-control(type='text', name='text',value= user.city)
+            
+                    .col-12
+                        button.btn.btn-primary(type='submit') Update
