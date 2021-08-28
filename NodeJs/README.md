@@ -93,3 +93,7 @@ const path = require('path')
 
 app.set('views', path.join(__dirname, 'views'))
 ```
+
+---
+
+## GET vs POST
