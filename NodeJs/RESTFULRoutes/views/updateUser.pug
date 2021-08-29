@@ -2,7 +2,7 @@ html(lang="en")
     include ./commonTemplate/htmlHeader
     body 
         div.container-fluid
-            form.row.g-3(action="/users/"+ user.id + "?_method=PATCH", method="post")
+            form.row.g-3(method="post", action="/users/"+ user.id + "?_method=PATCH")
                 form.row.g-3
                     .col-md-6
                         label.form-label(for='inputEmail4', name='email') Email
@@ -16,7 +16,6 @@ html(lang="en")
 
                     .col-md-12
                         label.form-label(for='inputCity') City
-                        input#inputCity.form-control(type='text', name='text',value= user.city)
-            
+                        input#inputCity.form-control(type='text', name='city',value= user.city)
                     .col-12
                         button.btn.btn-primary(type='submit') Update
