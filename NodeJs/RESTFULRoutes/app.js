@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 
 app.use('/users', usersRoute);
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
