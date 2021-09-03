@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    include ../commons/header.pug
+    body
+        include ../commons/nav.pug
+        .container.is-widescreen
+            h1.is-center Products 
+            .columns.is-justify-content-space-evenly.is-align-items-center.is-flex-wrap-wrap
+                each product in products 
+                    .column.is-one-third.box.m-2
+                        .card
+                        header.card-header
+                            p.card-header-title= product.name
+                            button.card-header-icon(aria-label='more options')
+                            span.icon
+                                i.fas.fa-angle-down(aria-hidden='true')
+                        .card-content
+                            .content= product.price
+                        footer.card-footer
+                            a.card-footer-item(href='/products/'+ product._id) Details
+                            a.card-footer-item(href='#') Edit
+                            form(action='/products/'+ product._id + '?_method=DELETE', method='post')
+                                button.button.is-danger  Delete

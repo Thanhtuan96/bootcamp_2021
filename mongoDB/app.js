@@ -1,70 +1,75 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 
 const port = 3000;
+const Product = require('./models/product.model');
+const { urlencoded } = require('express');
 
-const mongoose = require('mongoose');
 mongoose
     .connect('mongodb://localhost:27017/YourTravel', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
     .then(() => {
-        console.log('Database connected..!');
+        console.log('Mongo Database connected..!');
     })
     .catch((err) => {
         console.log(err);
     });
 
-// const db = mongoose.connection;
-
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.on('open', function () {
-//     console.log('database connected...!');
-// });
-
-const userSchema = new mongoose.Schema({
-    name: String,
-    age: Number,
-    email: String,
-    city: String,
-});
-
-const User = mongoose.model('User', userSchema);
-
-const productSchema = new mongoose.Schema({
-    name: String,
-    onSale: Boolean,
-    qty: Number,
-});
-
-const Product = mongoose.model('Product', productSchema);
-
-const bike = new Product({
-    name: 'Mountain',
-    onSale: true,
-    qty: 2,
-});
-
-User.find({})
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
-
-// const Tuan = new User({
-//     name: 'Tuan',
-//     age: 25,
-//     email: 'thanhtuan220315@gmail.com',
-//     city: 'Ha Noi',
-// }).save();
-
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // use this to read req.body
+app.use(methodOverride('_method'));
 
-app.get('/', (req, res) => {
-    res.render('index');
+// read all products from mongodb
+app.get('/products', async (req, res) => {
+    const products = await Product.find({});
+    console.log(products);
+    res.render('products/products', { products });
+});
+// get the create form
+app.get('/products/new', (req, res) => {
+    res.render('products/createProduct');
+});
+
+// get details for one product
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.render('products/product', { product });
+});
+
+// post new product
+app.post('/products', async (req, res) => {
+    const newProduct = await new Product(req.body);
+    await newProduct.save();
+    res.redirect('/products');
+});
+
+// get the update product by id form
+app.get('/products/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.render('products/updateProduct', { product });
+});
+
+// update the specific product
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findByIdAndUpdate(id, req.body);
+    res.redirect(`/products/${product._id}`);
+});
+
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
+    res.redirect('/products');
 });
 
 app.listen(port, (req, res) => {

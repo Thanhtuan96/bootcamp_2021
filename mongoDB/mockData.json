@@ -1,0 +1,50 @@
+[
+    { "name": "Kiwi Gold Zespri", "price": 77, "categrory": "Computers" },
+    {
+        "name": "Pork - Back, Short Cut, Boneless",
+        "price": 29,
+        "categrory": "Games"
+    },
+    { "name": "Beans - Soya Bean", "price": 55, "categrory": "Computers" },
+    {
+        "name": "Beef - Tenderlion, Center Cut",
+        "price": 17,
+        "categrory": "Books"
+    },
+    { "name": "Vinegar - Rice", "price": 25, "categrory": "Shoes" },
+    { "name": "Chick Peas - Canned", "price": 68, "categrory": "Toys" },
+    {
+        "name": "Cookie Chocolate Chip With",
+        "price": 52,
+        "categrory": "Electronics"
+    },
+    {
+        "name": "Island Oasis - Magarita Mix",
+        "price": 50,
+        "categrory": "Industrial"
+    },
+    { "name": "Roe - White Fish", "price": 81, "categrory": "Home" },
+    {
+        "name": "Muffin - Mix - Bran And Maple 15l",
+        "price": 55,
+        "categrory": "Baby"
+    },
+    { "name": "Yoplait Drink", "price": 56, "categrory": "Kids" },
+    {
+        "name": "Chip - Potato Dill Pickle",
+        "price": 98,
+        "categrory": "Automotive"
+    },
+    { "name": "Plaintain", "price": 4, "categrory": "Automotive" },
+    { "name": "Tortillas - Flour, 8", "price": 41, "categrory": "Music" },
+    { "name": "Broom Handle", "price": 28, "categrory": "Music" },
+    {
+        "name": "Jam - Blackberry, 20 Ml Jar",
+        "price": 46,
+        "categrory": "Beauty"
+    },
+    { "name": "Mince Meat - Filling", "price": 42, "categrory": "Sports" },
+    { "name": "Kohlrabi", "price": 65, "categrory": "Movies" },
+    { "name": "Juice - Clam, 46 Oz", "price": 78, "categrory": "Toys" },
+    { "name": "Pickles - Gherkins", "price": 78, "categrory": "Jewelry" }
+]

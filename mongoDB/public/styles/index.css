@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+.level-item:hover {
+    border-bottom: 1px solid white;
+    transition: all ease-in-out 2ms;
+}
