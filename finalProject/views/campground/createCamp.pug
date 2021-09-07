@@ -1,0 +1,15 @@
+include ../commons/header
+body 
+    .container-fluid.d-flex.justify-content-center.align-items-center
+        .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded
+            form.m-2(action="/campgrounds", method="post")
+                lable.form-lable(for="camp-name") Camp Name
+                input.form-control(type="text",id="camp-name",name="title",required)
+                lable.form-lable(for="camp-desc") Description
+                textarea.form-control(name="description", cols="30", rows="3",id="camp-desc",required)
+                lable.form-lable(for="camp-price") Price
+                input.form-control(type="number",id="camp-price",name="price",required)
+                lable.form-lable(for="camp-ratine") Rating
+                input.form-control(type="number", max='5', min='0', name='rating',required)
+                button.btn.btn-primary 
+                    i.bi-plus-cricle Create

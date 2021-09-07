@@ -38,6 +38,13 @@ app.get('/products/new', (req, res) => {
     res.render('products/createProduct');
 });
 
+// post new product
+app.post('/products', async (req, res) => {
+    const newProduct = await new Product(req.body);
+    await newProduct.save();
+    res.redirect('/products');
+});
+
 // get details for one product
 app.get('/products/:id', async (req, res) => {
     const { id } = req.params;
@@ -45,12 +52,6 @@ app.get('/products/:id', async (req, res) => {
     res.render('products/product', { product });
 });
 
-// post new product
-app.post('/products', async (req, res) => {
-    const newProduct = await new Product(req.body);
-    await newProduct.save();
-    res.redirect('/products');
-});
 
 // get the update product by id form
 app.get('/products/:id/edit', async (req, res) => {
