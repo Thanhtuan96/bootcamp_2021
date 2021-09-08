@@ -1,0 +1,42 @@
+[
+    {
+        "id": "ab310a91-5f1f-4eda-8fd0-841c8d2e8857",
+        "name": "Thomasine",
+        "age": 52,
+        "gender": "Female",
+        "email": "tdodridge0@reverbnation.com",
+        "city": "Mozzozzin Sur"
+    },
+    {
+        "id": "cc160f55-e19b-4cbf-ae23-6dec9cedb36e",
+        "name": "Mattheus",
+        "age": 49,
+        "gender": "Non-binary",
+        "email": "mbellringer1@sciencedirect.com",
+        "city": "Tocopilla"
+    },
+    {
+        "id": "2342388b-37c5-4734-a11e-ff774dd4e5aa",
+        "name": "Lilly",
+        "age": 64,
+        "gender": "Non-binary",
+        "email": "lguillem2@ameblo.jp",
+        "city": "Bechlín"
+    },
+    {
+        "id": "9322d7a0-f8e9-45ec-b472-36d5bac98832",
+        "name": "Myrta",
+        "age": 96,
+        "gender": "Genderfluid",
+        "email": "mhavile3@uiuc.edu",
+        "city": "Muzambinho"
+    },
+    {
+        "id": "d361c3d1-f1f1-4ac9-be4e-094e1c1049ca",
+        "name": "Mame",
+        "age": 53,
+        "gender": "Polygender",
+        "email": "mstewartson4@chron.com",
+        "city": "Qinghua"
+    }
+]

@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    include ../commons/header
+    body 
+        .container
+            .columns.is-justify-content-center.is-align-content-center
+                form.box(action='/products/' + product._id+ '?_method=PUT', method="post")
+                    .field
+                        lable.lable Name
+                        .control
+                        input.input(type="text", placeholder="name of fruits",name="name",value= product.name)
+                    .field
+                        lable.lable price
+                        .control 
+                            input.input(type="number", placeholder="price",name="price", value= product.price)
+                    .field
+                        lable.lable Catagory
+                        select(name="category") 
+                            option(value="food") food
+                            option(value="dairy") dairy
+                            option(value="drink") drink
+                            option(value="meat") meat
+                    button.button.is-primary Submit

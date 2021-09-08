@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+  color: red;
+}
+.container {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  grid-gap: 2rem;
+  margin: 10px 20px;
+  padding: 5px;
+}
+
+.container > div {
+  padding: 10px;
+  border: 1px solid red;
+  box-shadow: 1px 1px gray;
+  box-sizing: border-box;
+  box-shadow: 3px 3px gray;
+}
