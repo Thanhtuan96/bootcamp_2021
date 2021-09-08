@@ -1,5 +1,4 @@
 const Campground = require('./models/campground.model');
-const Database = require('./database');
 
 const createInitialData = async () => {
     await Campground.deleteMany({});
