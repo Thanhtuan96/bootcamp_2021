@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 
 const methodOverride = require('method-override');
+const morgan = require('morgan');
 
 const campgroundController = require('./controller/campground.controller');
 const Database = require('./database');
@@ -17,6 +18,8 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(morgan('tiny'));
+
 app.use('/campgrounds', campgroundController);
 
 // GET: get main page

@@ -1,5 +1,6 @@
-include ../commons/header
-body 
+extends ../layouts/mainLayout.pug
+
+block content 
     .container-fluid.d-flex.justify-content-center.align-items-center
         .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded
             form.m-2(action="/campgrounds", method="post")
