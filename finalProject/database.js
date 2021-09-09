@@ -16,4 +16,27 @@ class Database {
     }
 }
 
+// const { MongoClient } = require('mongodb');
+
+// const url =
+//     'mongodb+srv://ThanhTuan96:Tuancon96@cluster0.eafat.mongodb.net/yelp-camp?retryWrites=true&w=majority';
+// const client = new MongoClient(url);
+
+// class Database {
+//     constructor() {
+//         this.connect();
+//     }
+//     async connect() {
+//         try {
+//             await client.connect();
+//             console.log('...database connected');
+//             const db = client.db('yelp-camp');
+//             const campground = db.collection('campgrounds');
+//             const myDoc = await campground.find({ price: { $lt: 39 } });
+//             console.log(myDoc);
+//         } catch (error) {
+//             console.log(err);
+//         }
+//     }
+// }
 module.exports = new Database();
