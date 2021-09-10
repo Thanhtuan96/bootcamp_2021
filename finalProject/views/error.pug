@@ -1,0 +1,5 @@
+extends ./layouts/mainLayout
+
+block content
+    h1= err.name + err.statusCode
+    p= err.message

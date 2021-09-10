@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 
 const campgroundController = require('./controller/campground.controller');
+const ExpressError = require('./utils/ExpressError');
 const Database = require('./database');
 
 const port = process.env.PORT || 3000;
@@ -27,6 +28,19 @@ app.get('/', async (req, res) => {
     res.render('home');
 });
 
+// handle page not found
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+});
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    console.log(err);
+    if (!err.message) {
+        err.message = 'Oh no somthing go wrong';
+    }
+    res.status(statusCode).render('error', { err });
+});
 app.listen(port, () => {
     console.log(`Listening from ${port}`);
 });

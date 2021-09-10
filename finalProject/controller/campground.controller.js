@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const Campground = require('../models/campground.model');
 const campgroundCRUD = require('../middleware/campgroundCRUD');
 
 //get all campground data
 router.get('/', campgroundCRUD.getAll);
 
-//GET: || render create form
-router.get('/new', campgroundCRUD.getNewForm);
-
 // POST: create a new camp
 router.post('/', campgroundCRUD.postNew);
+//GET: || render create form
+router.get('/new', campgroundCRUD.getNewForm);
 
 // GET: get camp edit form
 router.get('/:id/edit', campgroundCRUD.getEditForm);

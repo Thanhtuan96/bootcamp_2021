@@ -2,6 +2,7 @@ extends ../layouts/mainLayout
 
 block content
     .container-fluid
+        - success ? h1= success : "";
         .container
             a.mt-3.mb-3.btn.btn-primary(href="/campgrounds/new") Add Camp
             .row
