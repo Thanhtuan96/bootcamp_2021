@@ -10,7 +10,7 @@ const morgan = require('morgan');
 const campgroundController = require('./controller/campground.controller');
 const ExpressError = require('./utils/ExpressError');
 const Database = require('./database');
-const campgroundValidate = require('./middleware/campgroundValidate');
+
 
 const port = process.env.PORT || 3000;
 
