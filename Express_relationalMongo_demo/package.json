@@ -1,0 +1,25 @@
+{
+    "name": "finalproject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "joi": "^17.4.2",
+        "method-override": "^3.0.0",
+        "mongodb": "^4.1.1",
+        "mongoose": "^6.0.4",
+        "pug": "^3.0.2"
+    },
+    "devDependencies": {
+        "morgan": "^1.10.0",
+        "nodemon": "^2.0.12"
+    },
+    "scripts": {
+        "start": "nodemon --inspect app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}

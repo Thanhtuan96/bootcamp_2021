@@ -1,0 +1,28 @@
+extends ../layouts/mainLayout
+
+block content
+    .container-fluid
+        - success ? h1= success : "";
+        .container
+            a.mt-3.mb-3.btn.btn-primary(href="/campgrounds/new") Add Camp
+            .row
+                each camp in camps 
+                    .camp-container.d-flex.flex-column.justify-content-center.align-items-center.col.col-md-4.col.border.border-primary.rounded.py-5.px-0.h-100
+                        h2= camp.title 
+                        img.img-thumbnail(src=camp.imageUrl)
+                        p= camp.description
+                        p= camp.price
+                        .rating-star 
+                            span.fa.fa-star.checked 
+                            span.fa.fa-star.checked 
+                            span.fa.fa-star.checked
+                            span.fa.fa-star
+                            span.fa.fa-star
+                        form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
+                            .btn-group
+                                a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
+                                    .bi.bi-three-dots Details
+                                a.btn.btn-outline-secondary(href="/campgrounds/" + camp._id + "/edit") 
+                                    .bi.bi-pencil-square Edit
+                                button.btn.btn-outline-danger
+                                    .bi.bi-trash Remove

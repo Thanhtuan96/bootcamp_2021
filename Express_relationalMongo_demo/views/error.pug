@@ -1,0 +1,9 @@
+extends ./layouts/mainLayout
+
+block content
+    .row 
+        .col-6.offset-3
+            h1.alert.alert-danger= err.name
+            p.alert.alert-info= err.message
+
+            a.btn.btn-primary(href="/campgrounds") Back to Campgrounds
