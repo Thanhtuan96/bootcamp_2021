@@ -1,0 +1,18 @@
+extends ../layouts/mainLayout.pug
+
+block content 
+    .container-fluid.d-flex.flex-column.justify-content-center.align-items-center(style="height: 100vh;")
+        h1 Create new Farm
+        .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded.py-5
+            form.mt-10(action="/farms", method="post")
+                .mb-3
+                    label.form-label(for="farm-name") Farm name
+                    input.form-control(type="text",id="farm-name",name="name",required)
+                .mb-3
+                    label.form-label(for="farm-city") City
+                    input.form-control(type="text",id="farm-city",name="city",required)
+                .mb-3
+                    label.form-label(for="farm-email") Email
+                    input.form-control(type="text",id='farm-email',name="email")
+                button.btn.btn-primary.mt-3 
+                    i.bi-plus-cricle Create!!!

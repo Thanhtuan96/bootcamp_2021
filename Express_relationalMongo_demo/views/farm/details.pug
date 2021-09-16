@@ -1,0 +1,15 @@
+extends ../layouts/mainLayout
+
+block content
+        .container.d-flex.justify-content-center.align-items-center(style="height: 100vh;")
+            .camp-container.d-flex.flex-column.justify-content-center.align-items-center.col-md-4.col.border.border-primary.rounded.py-5  
+                    h2= farm.name
+                    p= farm.city
+                    form(action="/farms/" + farm._id + "?_method=DELETE",method='post',id='delete-form') 
+                        .btn-group
+                            a.btn.btn-outline-primary(href="/farms/" + farm._id ) 
+                                .bi.bi-three-dots.me-1 Details
+                            a.btn.btn-outline-secondary(href="/farms/" + farm._id + "/edit") 
+                                .bi.bi-pencil-square.me-1 Edit
+                            a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
+                                .bi.bi-trash.me-1 Remove 

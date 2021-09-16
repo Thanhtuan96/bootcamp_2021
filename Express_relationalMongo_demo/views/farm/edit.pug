@@ -1,0 +1,17 @@
+extends ../layouts/mainLayout.pug
+
+block content
+    .container-fluid.d-flex.justify-content-center.align-items-center(style='height: 100vh')
+        .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded
+            form.m-2(action="/farms/" + farm._id + '?_method=PUT', method="post")
+                .mb-3
+                    label.form-label(for="farm-name") Farm Name
+                    input.form-control(type="text",id="farm-name",name="title",required,value= farm.name)
+                .mb-3
+                    label.form-label(for="farm-city") Description
+                    input.form-control(id='farm-city',name='city',value= farm.city)
+                .mb-3
+                    label.form-label(for="farm-email") Email
+                    input.form-control(type='text', id='farm-email',name='email',value=farm.email)
+                button.btn.btn-primary 
+                    .bi-plus-cricle Update

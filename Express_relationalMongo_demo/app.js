@@ -9,6 +9,7 @@ const morgan = require('morgan');
 
 const campgroundController = require('./controller/campground.controller');
 const ProductController = require('./controller/product.controller');
+const FarmController = require('./controller/farm.controller');
 const ExpressError = require('./utils/ExpressError');
 const Database = require('./database');
 
@@ -24,6 +25,7 @@ app.use(morgan('tiny'));
 
 app.use('/campgrounds', campgroundController);
 app.use('/products', ProductController);
+app.use('/farms', FarmController);
 // GET: get main page
 app.get('/', async (req, res) => {
     res.render('home');

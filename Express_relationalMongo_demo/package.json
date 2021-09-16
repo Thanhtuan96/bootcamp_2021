@@ -13,6 +13,7 @@
         "pug": "^3.0.2"
     },
     "devDependencies": {
+        "light-server-pug": "^2.6.4",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.12"
     },
