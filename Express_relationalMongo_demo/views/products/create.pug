@@ -3,15 +3,14 @@ extends ../layouts/mainLayout.pug
 block content 
     .container-fluid.d-flex.justify-content-center.align-items-center
         .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded
-            form.m-2(action="/campgrounds", method="post")
+            form.m-2(action="/farms/" + id +'/products' , method="post")
                 lable.form-lable(for="camp-name") Product Name
                 input.form-control(type="text",id="camp-name",name="name",required)
                 lable.form-lable(for="camp-price") Price
                 input.form-control(type="number",id="camp-price",name="price",required)
                 lable.form-lable(for="") Category
                 select( name='category')
-                    option(value='fruits') fruit
-                    option(value='vegetable') vegetable
-                    option(value='dairy') dairy
+                    each category in categories 
+                        option(value=category)= category
                 button.btn.btn-primary 
                     .bi-plus-cricle Create

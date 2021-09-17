@@ -20,8 +20,14 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Farm',
     },
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review',
+        },
+    ],
 });
 
-const Product = mongoose.model('product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

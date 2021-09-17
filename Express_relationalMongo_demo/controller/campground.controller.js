@@ -23,4 +23,7 @@ router.get('/:id', campgroundCRUD.getOne);
 //DELETE: delete camp
 router.delete('/:id', campgroundCRUD.deleteOne);
 
+//POST: crate new review for camp
+router.post('/:id/reviews', campgroundCRUD.createReview);
+
 module.exports = router;
