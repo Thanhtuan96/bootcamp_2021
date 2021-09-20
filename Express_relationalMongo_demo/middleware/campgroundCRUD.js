@@ -15,10 +15,10 @@ module.exports = {
     getOne: catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const camp = await Campground.findById(id).populate('reviews');
+        console.log(camp);
         if (!camp) {
             throw new ExpressError('Product Not Found', 404);
         }
-        console.log(camp);
         res.render('campground/details', { camp });
     }),
     getNewForm: catchAsync(async (req, res, next) => {
@@ -48,7 +48,8 @@ module.exports = {
     }),
     createReview: catchAsync(async (req, res, next) => {
         console.log(req.body);
-        const review = await new Review(req.body);
+        const create_at = new Date();
+        const review = await new Review({ ...req.body, create_at });
         const campground = await Campground.findById(req.params.id);
         await campground.reviews.push(review);
         await review.save();
