@@ -43,8 +43,10 @@ block content
                                             .body= item.body
                                             .create-at= item.create_at.split(' ').slice(0,5).join(' ')
                                         span.badge.bg-primary.rounded-pill= item.rating
-                                        .btn-container.d-flex.flex-column.m-2 
-                                            .btn.btn-danger delete 
+
+                                        .btn-container.d-flex.flex-column.m-2
+                                            form(action='/campgrounds/' + camp._id + '/reviews/' + item._id+ '?_method=DELETE',method='post')
+                                                button.btn.btn-danger delete 
                                             .btn.btn-primary reply
                         else
                                 h5 Have no review yet!!!

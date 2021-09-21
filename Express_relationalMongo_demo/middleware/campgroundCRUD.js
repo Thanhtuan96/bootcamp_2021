@@ -15,7 +15,6 @@ module.exports = {
     getOne: catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const camp = await Campground.findById(id).populate('reviews');
-        console.log(camp);
         if (!camp) {
             throw new ExpressError('Product Not Found', 404);
         }
@@ -42,12 +41,10 @@ module.exports = {
     }),
     deleteOne: catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        console.log(id);
         await Campground.findByIdAndDelete(id);
         res.redirect('/campgrounds');
     }),
     createReview: catchAsync(async (req, res, next) => {
-        console.log(req.body);
         const create_at = new Date();
         const review = await new Review({ ...req.body, create_at });
         const campground = await Campground.findById(req.params.id);
@@ -55,5 +52,13 @@ module.exports = {
         await review.save();
         await campground.save();
         res.redirect('/campgrounds/' + campground._id);
+    }),
+    deleteReview: catchAsync(async (req, res, next) => {
+        const { id, reviewId } = req.params;
+        await Campground.findByIdAndUpdate(id, {
+            $pull: { reviews: reviewId },
+        });
+        await Review.findByIdAndDelete(reviewId);
+        res.redirect(`/campgrounds/${id}`);
     }),
 };
