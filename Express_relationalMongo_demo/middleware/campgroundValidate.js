@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const ExpressError = require('../utils/ExpressError');
 
+// Set Campground JOI Schema 
 const campgroundSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().required(),
@@ -8,6 +9,8 @@ const campgroundSchema = Joi.object({
     rating: Joi.number().required(),
 }).required();
 
+
+// campground validate middleware
 const campgroundValidate = (req, res, next) => {
     console.log(req.body);
     const { error } = campgroundSchema.validate(req.body);

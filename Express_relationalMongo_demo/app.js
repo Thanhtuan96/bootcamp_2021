@@ -42,7 +42,6 @@ app.use((err, req, res, next) => {
     if (!err.message) {
         err.message = 'Oh no somthing go wrong';
     }
-    console.dir(err);
     res.status(statusCode).render('error', { err });
 });
 app.listen(port, () => {

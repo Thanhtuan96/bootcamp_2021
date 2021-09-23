@@ -1,17 +1,19 @@
+const { number } = require('joi');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = Schema({
     name: {
         type: String,
-        require: [true, 'Username cannot be blank'],
+        require: [true, 'user name should be enter'],
     },
     email: {
         type: String,
-        require: [true, 'Email is required'],
+        require: true,
+    },
+    phone: {
+        type: Number,
+        require: true,
     },
     password: String,
-    phone: Number,
 });
-
-module.exports = mongoose.model('User', userSchema);

@@ -1,0 +1,13 @@
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    .container-fluid
+        a.navbar-brand(href='#') TravelLog
+        button.navbar-toggler(type='button',data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' ,aria-controls='navbarNavAltMarkup',aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarNavAltMarkup.collapse.navbar-collapse.justify-content-between
+            .navbar-nav.flex-fill.justify-content-evenly
+                a.nav-link.active(aria-current='page' href='#') Home
+                a.nav-link(href='#') Features
+                a.nav-link(href='#') Pricing
+            form(action='/logout',method='Post')
+                button.btn.btn-outline-light Logout

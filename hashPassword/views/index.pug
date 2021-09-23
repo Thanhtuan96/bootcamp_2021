@@ -1,0 +1,7 @@
+extends ./layouts/mainLayout
+
+block content
+    if(user)
+        h1= "Hello " +  user.name 
+    else 
+        h1 Hello World
