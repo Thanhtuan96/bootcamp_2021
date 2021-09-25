@@ -1,0 +1,8 @@
+if (success && success.length)
+    .alert.alert-success.alert-dismissible.fade.show(role='alert')
+        div= success
+        button.btn-close(type='button',aria-label="Close",data-bs-dismiss='alert',data-dismiss="alert")
+if (error && error.length)
+    .alert.alert-danger.alert-dismissible.fade.show(role='alert')
+        div= error
+        button.btn-close(type='button',aria-label="Close",data-dismiss="alert",data-bs-dismiss='alert')

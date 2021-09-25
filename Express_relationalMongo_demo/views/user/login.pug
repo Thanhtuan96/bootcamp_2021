@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css",integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We",crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js",integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj", crossorigin="anonymous") 
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel="stylesheet", href="../../CSS/campGround.css")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css")
+        title Login
+    body
+        include ../partials/flash
+        .container(style='height: 100vh')
+            .h-100.d-flex.flex-column.justify-content-center.align-items-center
+                form.shadow.px-3.py-5.rounded(action='/login',method='post')
+                    h1.p-1.text-center Login
+                    .mb-3
+                        label.form-label(for='exampleInputEmail1') Username
+                        input#exampleInputEmail1.form-control(type='text' aria-describedby='emailHelp',name='username',required)
+                        #emailHelp.form-text We&apos;ll never share your email with anyone else.
+                    .mb-3
+                        label.form-label(for='exampleInputPassword1') Password
+                        input#exampleInputPassword1.form-control(type='password',name='password',required)
+                    .mb-3.form-check
+                        input#exampleCheck1.form-check-input(type='checkbox')
+                        label.form-check-label(for='exampleCheck1') Check me out
+                    button.btn.btn-primary(type='submit') Sign In
+                    a.mx-1.btn.btn-success(href='/register') Create a new account

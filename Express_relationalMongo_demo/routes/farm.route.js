@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Farm = require('../models/farm');
 const Product = require('../models/product');
-const { route } = require('./campground.controller');
 
 const categories = ['fruit', 'Drink', 'Dairy'];
 

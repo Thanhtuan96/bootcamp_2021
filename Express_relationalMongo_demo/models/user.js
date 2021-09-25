@@ -1,15 +1,13 @@
-const { number } = require('joi');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
 
-const userSchema = Schema({
-    name: {
-        type: String,
-        require: [true, 'user name should be enter'],
-    },
+const UserSchema = Schema({
     email: {
         type: String,
         require: true,
+        unique: true,
     },
     phone: {
         type: Number,
@@ -17,3 +15,7 @@ const userSchema = Schema({
     },
     password: String,
 });
+
+UserSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('User', UserSchema);

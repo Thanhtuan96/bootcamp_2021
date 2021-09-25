@@ -3,6 +3,7 @@ const Review = require('../models/review');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Joi = require('joi');
+const passport = require('passport');
 
 module.exports = {
     //get all campground endpoint
@@ -22,7 +23,7 @@ module.exports = {
         }
         res.render('campground/details', { camp });
     }),
-    // get create campground form 
+    // get create campground form
     getNewForm: catchAsync(async (req, res, next) => {
         res.render('campground/create');
     }),
@@ -51,7 +52,7 @@ module.exports = {
         await Campground.findByIdAndDelete(id);
         res.redirect('/campgrounds');
     }),
-    
+
     createReview: catchAsync(async (req, res, next) => {
         const create_at = new Date();
         const review = await new Review({ ...req.body, create_at });

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const campgroundCRUD = require('../middleware/campgroundCRUD');
-const campgroundValidate = require('../middleware/campgroundValidate');
+const campgroundCRUD = require('../controllers/campgroundCRUD');
+const campgroundValidate = require('../middlewares/campgroundValidate');
+const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
 //get all campground data
 router.get('/', campgroundCRUD.getAll);
