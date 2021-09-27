@@ -9,6 +9,7 @@ module.exports = {
     //get all campground endpoint
     getAll: catchAsync(async (req, res, next) => {
         const camps = await Campground.find({}).populate('reviews');
+
         if (!camps) {
             throw new ExpressError('Product Not Found', 404);
         }
@@ -17,7 +18,9 @@ module.exports = {
     //get one campground endpoint
     getOne: catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const camp = await Campground.findById(id).populate('reviews');
+        const camp = await Campground.findById(id)
+            .populate('reviews')
+            .populate('author', 'username');
         if (!camp) {
             throw new ExpressError('Product Not Found', 404);
         }
@@ -29,7 +32,7 @@ module.exports = {
     }),
     //post new campground and create one in database
     postNew: catchAsync(async (req, res, next) => {
-        const newCamp = await Campground(req.body);
+        const newCamp = await Campground({ author: req.user._id, ...req.body });
         newCamp.save();
         res.redirect('/campgrounds');
     }),

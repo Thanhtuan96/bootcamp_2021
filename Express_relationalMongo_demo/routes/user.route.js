@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const passport = require('passport');
-const { register } = require('../models/user');
 
 router.get('/', (req, res) => {
     res.send('this is a user profile page');
@@ -21,7 +20,8 @@ router.post(
     }),
     (req, res) => {
         req.flash('success', 'welcome to the travel note');
-        res.redirect('/campgrounds');
+        const redirectUrl = req.session.returnTo || '/campgrounds';
+        res.redirect(redirectUrl);
     }
 );
 router.get('/register', (req, res) => {

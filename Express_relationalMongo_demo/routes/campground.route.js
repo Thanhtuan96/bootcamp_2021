@@ -8,26 +8,30 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 router.get('/', campgroundCRUD.getAll);
 
 // POST: create a new camp
-router.post('/', campgroundValidate, campgroundCRUD.postNew);
+router.post('/', isLoggedIn, campgroundValidate, campgroundCRUD.postNew);
 
 //GET: || render create form
-router.get('/new', campgroundCRUD.getNewForm);
+router.get('/new', isLoggedIn, campgroundCRUD.getNewForm);
 
 // GET: get camp edit form
-router.get('/:id/edit', campgroundCRUD.getEditForm);
+router.get('/:id/edit', isLoggedIn, campgroundCRUD.getEditForm);
 
 // PUT: update selected camp
-router.put('/:id', campgroundValidate, campgroundCRUD.putUpdate);
+router.put('/:id', isLoggedIn, campgroundValidate, campgroundCRUD.putUpdate);
 // GET: get specific camp
-router.get('/:id', campgroundCRUD.getOne);
+router.get('/:id', isLoggedIn, campgroundCRUD.getOne);
 
 //DELETE: delete camp
-router.delete('/:id', campgroundCRUD.deleteOne);
+router.delete('/:id', isLoggedIn, campgroundCRUD.deleteOne);
 
 //POST: crate new review for camp
-router.post('/:id/reviews', campgroundCRUD.createReview);
+router.post('/:id/reviews', isLoggedIn, campgroundCRUD.createReview);
 
 //DELETE: delete review in camp
-router.delete('/:id/reviews/:reviewId', campgroundCRUD.deleteReview);
+router.delete(
+    '/:id/reviews/:reviewId',
+    isLoggedIn,
+    campgroundCRUD.deleteReview
+);
 
 module.exports = router;

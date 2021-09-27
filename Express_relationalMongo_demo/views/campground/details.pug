@@ -8,20 +8,23 @@ block content
                         h2= camp.title 
                         p= camp.description
                         p= camp.price
+                        if(camp.author)
+                            p= 'posted by ' + camp.author.username
                         .rating-star 
                             span.fa.fa-star.checked 
                             span.fa.fa-star.checked 
                             span.fa.fa-star.checked
                             span.fa.fa-star
                             span.fa.fa-star
-                        form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
-                            .btn-group
-                                a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
-                                    .bi.bi-three-dots.me-1 Details
-                                a.btn.btn-outline-secondary(href="/campgrounds/" + camp._id + "/edit") 
-                                    .bi.bi-pencil-square.me-1 Edit
-                                a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
-                                    .bi.bi-trash.me-1 Remove 
+                        if(camp.author && camp.author.equals(currentUser))    
+                            form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
+                                .btn-group
+                                    a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
+                                        .bi.bi-three-dots.me-1 Details
+                                    a.btn.btn-outline-secondary(href="/campgrounds/" + camp._id + "/edit") 
+                                        .bi.bi-pencil-square.me-1 Edit
+                                    a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
+                                        .bi.bi-trash.me-1 Remove 
                 .col.col-ms-12.d-flex.flex-column
                     form(action='/campgrounds/'+ camp._id +'/reviews', method='POST')
                         h3 Please leave a review!!
