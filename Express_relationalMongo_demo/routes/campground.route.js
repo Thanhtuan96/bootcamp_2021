@@ -4,11 +4,10 @@ const campgroundCRUD = require('../controllers/campgroundCRUD');
 const campgroundValidate = require('../middlewares/campgroundValidate');
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
-//get all campground data
-router.get('/', campgroundCRUD.getAll);
-
-// POST: create a new camp
-router.post('/', isLoggedIn, campgroundValidate, campgroundCRUD.postNew);
+router
+    .route('/')
+    .get(campgroundCRUD.getAll) //get all campground data
+    .post(isLoggedIn, campgroundValidate, campgroundCRUD.postNew); // POST: create a new camp
 
 //GET: || render create form
 router.get('/new', isLoggedIn, campgroundCRUD.getNewForm);
@@ -16,13 +15,11 @@ router.get('/new', isLoggedIn, campgroundCRUD.getNewForm);
 // GET: get camp edit form
 router.get('/:id/edit', isLoggedIn, campgroundCRUD.getEditForm);
 
-// PUT: update selected camp
-router.put('/:id', isLoggedIn, campgroundValidate, campgroundCRUD.putUpdate);
-// GET: get specific camp
-router.get('/:id', isLoggedIn, campgroundCRUD.getOne);
-
-//DELETE: delete camp
-router.delete('/:id', isLoggedIn, campgroundCRUD.deleteOne);
+router
+    .route('/:id')
+    .put(isLoggedIn, campgroundValidate, campgroundCRUD.putUpdate) // PUT: update selected camp
+    .get(isLoggedIn, campgroundCRUD.getOne) // GET: get specific camp
+    .delete(isLoggedIn, campgroundCRUD.deleteOne); //DELETE: delete camp
 
 //POST: crate new review for camp
 router.post('/:id/reviews', isLoggedIn, campgroundCRUD.createReview);

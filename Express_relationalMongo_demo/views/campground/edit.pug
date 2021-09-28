@@ -1,16 +1,37 @@
 extends ../layouts/mainLayout.pug
 
+block links 
+    link(rel='stylesheet',type='text/css',href='../../CSS/star.css')
+    script(src='https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js')
+
 block content
     .container-fluid.d-flex.justify-content-center.align-items-center
-        .form-container.d-flex.justify-content-center.align-items-center.p-2.border.rounded
-            form.m-2(action="/campgrounds/" + camp._id + '?_method=PUT', method="post")
+        .form-container.d-flex.border.rounded.p-3
+            form.m-2(action="/campgrounds/" + camp._id + '?_method=PUT', method="post",form-data='')
                 lable.form-lable(for="camp-name") Camp Name
                 input.form-control(type="text",id="camp-name",name="title",required,value= camp.title)
                 lable.form-lable(for="camp-desc") Description
                 textarea.form-control(name="description", cols="30", rows="3",id="camp-desc",required)= camp.description
                 lable.form-lable(for="camp-price") Price
                 input.form-control(type="number",id="camp-price",name="price",required, value= camp.price)
-                lable.form-lable(for="camp-ratine") Rating
-                input.form-control(type="number", max='5', min='0', name='rating',required, value= camp.rating)
+                .rating-group.mt-3
+                    fieldset.starability-heart
+                        input#no-rate.input-no-rate(type='radio' name='rating' value='0' checked='' aria-label='No rating.')
+                        input#first-rate1(type='radio' name='rating' value='1')
+                        label(for='first-rate1' title='Terrible') 1 star
+                        input#first-rate2(type='radio' name='rating' value='2')
+                        label(for='first-rate2' title='Not good') 2 stars
+                        input#first-rate3(type='radio' name='rating' value='3')
+                        label(for='first-rate3' title='Average') 3 stars
+                        input#first-rate4(type='radio' name='rating' value='4')
+                        label(for='first-rate4' title='Very good') 4 stars
+                        input#first-rate5(type='radio' name='rating' value='5')
+                        label(for='first-rate5' title='Amazing') 5 stars)
+                .input-group.mb-3
+                    .input-group-prepend
+                        span.input-group-text Upload
+                    .custom-file
+                        input#inputGroupFile01.custom-file-input(type='file')
+                        label.custom-file-label(for='inputGroupFile01') Choose file
                 button.btn.btn-primary 
                     i.bi-plus-cricle Update

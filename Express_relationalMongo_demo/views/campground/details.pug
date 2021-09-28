@@ -1,5 +1,8 @@
 extends ../layouts/mainLayout
 
+block links
+    link(rel='stylesheet',type='text/css',href='../CSS/star.css')
+
 block content
         .container-fluid.mt-2
             .row.d-flex
@@ -28,10 +31,20 @@ block content
                 .col.col-ms-12.d-flex.flex-column
                     form(action='/campgrounds/'+ camp._id +'/reviews', method='POST')
                         h3 Please leave a review!!
-                        .rating-group 
-                            label.form-label(for='rating-range') Rating
-                            input.form-range(id='rating-range',type='range',min=0, max=5,name='rating',required)
-                            p= '4/5'
+                        .rating-group.mb-3
+                            fieldset.starability-heart
+                                legend First rating:
+                                input#no-rate.input-no-rate(type='radio' name='rating' value='0' checked='' aria-label='No rating.')
+                                input#first-rate1(type='radio' name='rating' value='1')
+                                label(for='first-rate1' title='Terrible') 1 star
+                                input#first-rate2(type='radio' name='rating' value='2')
+                                label(for='first-rate2' title='Not good') 2 stars
+                                input#first-rate3(type='radio' name='rating' value='3')
+                                label(for='first-rate3' title='Average') 3 stars
+                                input#first-rate4(type='radio' name='rating' value='4')
+                                label(for='first-rate4' title='Very good') 4 stars
+                                input#first-rate5(type='radio' name='rating' value='5')
+                                label(for='first-rate5' title='Amazing') 5 stars
                         .input-group
                             span.input-group-text Review
                             textarea.form-control(arial-label="review-textarea",name='body' required)
@@ -43,9 +56,9 @@ block content
                                     .list-group-item.d-flex.flex-row.justify-content-between.align-items-center.rounded
                                         .review.flex-grow-1
                                             .fw-bold review
+                                            p.starability-result(data-rating= item.rating)= 'Rated: ' + item.rating +' start' 
                                             .body= item.body
                                             .create-at= item.create_at.split(' ').slice(0,5).join(' ')
-                                        span.badge.bg-primary.rounded-pill= item.rating
 
                                         .btn-container.d-flex.flex-column.m-2
                                             form(action='/campgrounds/' + camp._id + '/reviews/' + item._id+ '?_method=DELETE',method='post')
