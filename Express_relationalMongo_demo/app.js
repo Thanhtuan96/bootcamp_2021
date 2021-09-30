@@ -7,18 +7,17 @@ const path = require('path');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('connect-flash');
 const LocalStrategy = require('passport-local');
-const User = require('./models/user');
+const passport = require('passport');
 
 const campgroundRoute = require('./routes/campground.route');
 const ProductRoute = require('./routes/product.route');
 const FarmRoute = require('./routes/farm.route');
 const UserRoute = require('./routes/user.route');
-const { isLoggedIn } = require('./middlewares/isLoggedIn');
 const ExpressError = require('./utils/ExpressError');
 const Database = require('./database');
-const passport = require('passport');
-const flash = require('connect-flash');
+const User = require('./models/user');
 
 const port = process.env.PORT || 3000;
 const sessionConfig = {

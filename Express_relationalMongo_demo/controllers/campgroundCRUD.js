@@ -4,6 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Joi = require('joi');
 const passport = require('passport');
+const averageRateCalculate = require('../middlewares/logicMiddleware');
 
 module.exports = {
     //get all campground endpoint
@@ -21,10 +22,13 @@ module.exports = {
         const camp = await Campground.findById(id)
             .populate('reviews')
             .populate('author', 'username');
+
+        let averageRate = averageRateCalculate(camp);
+
         if (!camp) {
             throw new ExpressError('Product Not Found', 404);
         }
-        res.render('campground/details', { camp });
+        res.render('campground/details', { camp, averageRate });
     }),
     // get create campground form
     getNewForm: catchAsync(async (req, res, next) => {
@@ -32,9 +36,14 @@ module.exports = {
     }),
     //post new campground and create one in database
     postNew: catchAsync(async (req, res, next) => {
-        const newCamp = await Campground({ author: req.user._id, ...req.body });
-        newCamp.save();
-        res.redirect('/campgrounds');
+        const campground = await Campground(req.body.campground);
+        campground.image = req.files.map((f) => ({
+            url: f.path,
+            filename: f.filename,
+        }));
+        campground.author = req.user._id;
+        campground.save();
+        res.redirect(`/campgrounds/${campground._id}`);
     }),
     // get Edit campground form
     getEditForm: catchAsync(async (req, res, next) => {

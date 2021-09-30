@@ -3,6 +3,7 @@ extends ../layouts/mainLayout.pug
 block links 
     link(rel='stylesheet',type='text/css',href='../../CSS/star.css')
     script(src='https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js')
+    script(src="../../JS/customFileInput.js") 
 
 block content
     .container-fluid.d-flex.justify-content-center.align-items-center
@@ -27,11 +28,11 @@ block content
                         label(for='first-rate4' title='Very good') 4 stars
                         input#first-rate5(type='radio' name='rating' value='5')
                         label(for='first-rate5' title='Amazing') 5 stars)
-                .input-group.mb-3
-                    .input-group-prepend
-                        span.input-group-text Upload
-                    .custom-file
-                        input#inputGroupFile01.custom-file-input(type='file')
-                        label.custom-file-label(for='inputGroupFile01') Choose file
+                .mb-3
+                    .form-file.custom-file
+                        input.form-file-input#uploadImg(type='file',name='image',multiple)
+                        label.form-file-label(for='uploadImg') 
+                            span.form-file-text.custom-file-label Choose file
+                            span.form-file-button Browse
                 button.btn.btn-primary 
                     i.bi-plus-cricle Update

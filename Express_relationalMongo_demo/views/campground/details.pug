@@ -6,28 +6,36 @@ block links
 block content
         .container-fluid.mt-2
             .row.d-flex
-                .camp-container.d-flex.flex-column.justify-content-center.align-items-center.border.border-primary.rounded.py-5.col.me-1.col-ms-12(style="height: 100%;") 
-                        img.img-fluid(src= camp.imageUrl)
-                        h2= camp.title 
-                        p= camp.description
-                        p= camp.price
-                        if(camp.author)
-                            p= 'posted by ' + camp.author.username
-                        .rating-star 
-                            span.fa.fa-star.checked 
-                            span.fa.fa-star.checked 
-                            span.fa.fa-star.checked
-                            span.fa.fa-star
-                            span.fa.fa-star
-                        if(camp.author && camp.author.equals(currentUser))    
-                            form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
-                                .btn-group
-                                    a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
-                                        .bi.bi-three-dots.me-1 Details
-                                    a.btn.btn-outline-secondary(href="/campgrounds/" + camp._id + "/edit") 
-                                        .bi.bi-pencil-square.me-1 Edit
-                                    a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
-                                        .bi.bi-trash.me-1 Remove 
+                .camp-container.d-flex.flex-column.justify-content-center.align-items-center.border.border-primary.rounded.py-5.col.me-1.col-ms-12(style="height: 100%;")
+                    if(camp.image.length)
+                        #carouselExampleControls.carousel.slide(data-bs-ride='carousel')
+                            .carousel-inner
+                                each img in camp.image 
+                                    if img.url === camp.image[0].url
+                                        .carousel-item.active 
+                                            img.img-fluid.d-block.w-100(src= img.url)
+                                    else
+                                        .carousel-item 
+                                            img.img-fluid.d-block.w-100(src= img.url)
+                            button.carousel-control-prev(type='button' data-bs-target='#carouselExampleControls' data-bs-slide='prev')
+                                span.carousel-control-prev-icon(aria-hidden='true')
+                                span.visually-hidden Previous
+                            button.carousel-control-next(type='button' data-bs-target='#carouselExampleControls' data-bs-slide='next')
+                                span.carousel-control-next-icon(aria-hidden='true')
+                                span.visually-hidden Next
+                    h2= camp.title 
+                    p= camp.description
+                    p= '$ ' + camp.price + ' /night'
+                    if(camp.author)
+                        p= 'posted by ' + camp.author.username
+                    p.starability-result(data-rating= averageRate )= 'Rated: ' + averageRate +' star'
+                    if(camp.author && camp.author.equals(currentUser))    
+                        form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
+                            .btn-group
+                                a.btn.btn-outline-secondary(href="/campgrounds/" + camp._id + "/edit") 
+                                    .bi.bi-pencil-square.me-1 Edit
+                                a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
+                                    .bi.bi-trash.me-1 Remove 
                 .col.col-ms-12.d-flex.flex-column
                     form(action='/campgrounds/'+ camp._id +'/reviews', method='POST')
                         h3 Please leave a review!!
@@ -56,7 +64,7 @@ block content
                                     .list-group-item.d-flex.flex-row.justify-content-between.align-items-center.rounded
                                         .review.flex-grow-1
                                             .fw-bold review
-                                            p.starability-result(data-rating= item.rating)= 'Rated: ' + item.rating +' start' 
+                                            p.starability-result(data-rating= item.rating)= 'Rated: ' + item.rating +' star' 
                                             .body= item.body
                                             .create-at= item.create_at.split(' ').slice(0,5).join(' ')
 
