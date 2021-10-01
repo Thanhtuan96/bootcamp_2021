@@ -14,13 +14,13 @@ router
         isLoggedIn,
         upload.array('image'),
         campgroundValidate,
-        campgroundCRUD.postNew
+        campgroundCRUD.postCreatedCamp
     ); // POST: create a new camp
 //GET: || render create form
-router.get('/new', isLoggedIn, campgroundCRUD.getNewForm);
+router.get('/new', isLoggedIn, campgroundCRUD.getCreateForm);
 router
     .route('/:id')
-    .put(isLoggedIn, campgroundValidate, campgroundCRUD.putUpdate) // PUT: update selected camp
+    .put(campgroundValidate, isLoggedIn, campgroundCRUD.putUpdate) // PUT: update selected camp
     .get(isLoggedIn, campgroundCRUD.getOne) // GET: get specific camp
     .delete(isLoggedIn, campgroundCRUD.deleteOne); //DELETE: delete camp
 
@@ -33,7 +33,7 @@ router.post('/:id/reviews', isLoggedIn, campgroundCRUD.createReview);
 //DELETE: delete review in camp
 router.delete(
     '/:id/reviews/:reviewId',
-    isLoggedIn,
+
     campgroundCRUD.deleteReview
 );
 

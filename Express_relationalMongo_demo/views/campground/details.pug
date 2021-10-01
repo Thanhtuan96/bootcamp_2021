@@ -1,4 +1,4 @@
-extends ../layouts/mainLayout
+extends ../layouts/boilertemplate
 
 block links
     link(rel='stylesheet',type='text/css',href='../CSS/star.css')
@@ -24,11 +24,12 @@ block content
                                 span.carousel-control-next-icon(aria-hidden='true')
                                 span.visually-hidden Next
                     h2= camp.title 
+                    p= camp.location
                     p= camp.description
                     p= '$ ' + camp.price + ' /night'
                     if(camp.author)
                         p= 'posted by ' + camp.author.username
-                    p.starability-result(data-rating= averageRate )= 'Rated: ' + averageRate +' star'
+                    p.starability-result(data-rating= camp.averageRate )= 'Rated: ' + camp.averageRate +' star'
                     if(camp.author && camp.author.equals(currentUser))    
                         form(action="/campgrounds/" + camp._id + "?_method=DELETE",method='post',id='delete-form') 
                             .btn-group

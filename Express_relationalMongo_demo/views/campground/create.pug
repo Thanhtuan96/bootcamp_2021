@@ -1,4 +1,4 @@
-extends ../layouts/mainLayout.pug
+extends ../layouts/boilertemplate
 
 block content 
     .container-fluid.d-flex.justify-content-center.align-items-center
@@ -6,6 +6,8 @@ block content
             form.m-2(action="/campgrounds", method="post",enctype='multipart/form-data')
                 lable.form-lable(for="camp-name") Camp Name
                 input.form-control(type="text",id="camp-name",name="campground[title]",required)
+                lable.form-lable(for="camp-location") Camp Location
+                input.form-control(type="text",id="camp-location",name="campground[location]",required)
                 lable.form-lable(for="camp-desc") Description
                 textarea.form-control(name="campground[description]", cols="30", rows="3",id="camp-desc",required)
                 lable.form-lable(for="camp-price") Price
