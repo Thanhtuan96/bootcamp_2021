@@ -79,3 +79,4 @@ app.listen(port, () => {
     console.log(`Listening from ${port}`);
 });
 // try to make new feature using another branch
+// add map to the app and show camp into page
