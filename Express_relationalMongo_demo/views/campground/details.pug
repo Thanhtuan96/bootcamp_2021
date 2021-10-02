@@ -5,18 +5,18 @@ block links
 
 block content
         .container-fluid.mt-2
-            .row.d-flex
-                .camp-container.d-flex.flex-column.justify-content-center.align-items-center.border.border-primary.rounded.py-5.col.me-1.col-ms-12(style="height: 100%;")
+            .row
+                .camp-container.d-flex.flex-column.justify-content-center.align-items-center.border.border-primary.rounded.py-5.col-md-4.col.me-1(style="height: 100%; position:")
                     if(camp.image.length)
                         #carouselExampleControls.carousel.slide(data-bs-ride='carousel')
                             .carousel-inner
                                 each img in camp.image 
                                     if img.url === camp.image[0].url
                                         .carousel-item.active 
-                                            img.img-fluid.d-block.w-100(src= img.url)
+                                            img.img-fluid.d-block.w-100(src= img.url,style='max-height: 400px;height: auto')
                                     else
                                         .carousel-item 
-                                            img.img-fluid.d-block.w-100(src= img.url)
+                                            img.img-fluid.d-block.w-100(src= img.url,style='max-height: 400px;')
                             button.carousel-control-prev(type='button' data-bs-target='#carouselExampleControls' data-bs-slide='prev')
                                 span.carousel-control-prev-icon(aria-hidden='true')
                                 span.visually-hidden Previous
@@ -37,12 +37,12 @@ block content
                                     .bi.bi-pencil-square.me-1 Edit
                                 a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
                                     .bi.bi-trash.me-1 Remove 
-                .col.col-ms-12.d-flex.flex-column
+                .col-md-7.d-flex.flex-column.flex-grow-1
+                    #map.rounded.mb-3(style='width: 100%; height: 300px;z-index: 1;')
                     form(action='/campgrounds/'+ camp._id +'/reviews', method='POST')
                         h3 Please leave a review!!
                         .rating-group.mb-3
                             fieldset.starability-heart
-                                legend First rating:
                                 input#no-rate.input-no-rate(type='radio' name='rating' value='0' checked='' aria-label='No rating.')
                                 input#first-rate1(type='radio' name='rating' value='1')
                                 label(for='first-rate1' title='Terrible') 1 star
@@ -62,11 +62,11 @@ block content
                         if camp.reviews.length
                             .list-reviews(style="width: 100%; max-width:500px;")
                                 each item in camp.reviews 
-                                    .list-group-item.d-flex.flex-row.justify-content-between.align-items-center.rounded
-                                        .review.flex-grow-1
+                                    .list-group-item.d-flex.flex-row.justify-content-between.align-items-center.rounded.m-0
+                                        .review.text-wrap
                                             .fw-bold review
                                             p.starability-result(data-rating= item.rating)= 'Rated: ' + item.rating +' star' 
-                                            .body= item.body
+                                            .body(style='overflow-wrap: break-word;width: 100%')= item.body
                                             .create-at= item.create_at.split(' ').slice(0,5).join(' ')
 
                                         .btn-container.d-flex.flex-column.m-2
@@ -75,5 +75,9 @@ block content
                                             .btn.btn-primary reply
                         else
                                 h5 Have no review yet!!!
-                                        
+
+        script.
+            const currentCamp = !{JSON.stringify(camp)}
+            console.log(currentCamp)
+        script(src="/JS/showDetailsMap.js")                                
                         

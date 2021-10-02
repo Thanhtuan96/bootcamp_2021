@@ -1,25 +1,26 @@
 extends ../layouts/boilertemplate
 
 block content
-        .container.d-flex.flex-column.justify-content-center.align-items-center
-            .camp-container.d-flex.flex-column.justify-content-center.align-items-center.col-md-4.col.border.border-primary.rounded.py-5  
-                    h2= farm.name
-                    p= farm.city
-                    form(action="/farms/" + farm._id + "?_method=DELETE",method='post',id='delete-form') 
-                        .btn-group
-                            a.btn.btn-outline-primary(href="/farms/" + farm._id + '/products/new' ) 
-                                .bi.bi-three-dots.me-1 Add Product
-                            a.btn.btn-outline-secondary(href="/farms/" + farm._id + "/edit") 
-                                .bi.bi-pencil-square.me-1 Edit
-                            a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
-                                .bi.bi-trash.me-1 Remove 
-            .mb-3 
-                form(action='').d-flex.flex-column
-                    .rating-group 
-                        label.form-label(for='rating-range') Rating
-                        input.form-range(id='rating-range',type='range',min=0, max=5)
-                        p= '4/5'
-                    .input-group
-                        span.input-group-text Review
-                        textarea.form-control(arial-label="review-textarea",name='review')
-                        button.btn.btn-primary Summit
+    .container.d-flex.flex-column.justify-content-center.align-items-center
+        .camp-container.d-flex.flex-column.justify-content-center.align-items-center.col-md-4.col.border.border-primary.rounded.py-5  
+                h2= farm.name
+                p= farm.city
+                form(action="/farms/" + farm._id + "?_method=DELETE",method='post',id='delete-form') 
+                    .btn-group
+                        a.btn.btn-outline-primary(href="/farms/" + farm._id + '/products/new' ) 
+                            .bi.bi-three-dots.me-1 Add Product
+                        a.btn.btn-outline-secondary(href="/farms/" + farm._id + "/edit") 
+                            .bi.bi-pencil-square.me-1 Edit
+                        a.btn.btn-outline-danger( onclick= 'document.getElementById("delete-form").submit();') 
+                            .bi.bi-trash.me-1 Remove 
+        .mb-3
+            form(action='').d-flex.flex-column
+                .rating-group 
+                    label.form-label(for='rating-range') Rating
+                    input.form-range(id='rating-range',type='range',min=0, max=5)
+                    p= '4/5'
+                .input-group
+                    span.input-group-text Review
+                    textarea.form-control(arial-label="review-textarea",name='review')
+                    button.btn.btn-primary Summit
+        script(src="/JS/showMap.js") 

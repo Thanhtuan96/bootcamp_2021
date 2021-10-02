@@ -10,27 +10,29 @@ block content
         .form-container.d-flex.border.rounded.p-3
             form.m-2(action="/campgrounds/" + camp._id + '?_method=PUT', method="post",form-data='')
                 lable.form-lable(for="camp-name") Camp Name
-                input.form-control(type="text",id="camp-name",name="title",required,value= camp.title)
+                input.form-control(type="text",id="camp-name",name="campground[title]",required,value= camp.title)
+                lable.form-lable(for="camp-location") Camp Location
+                input.form-control(type="text",id="camp-location",name="campground[location]",required,value= camp.location)
                 lable.form-lable(for="camp-desc") Description
-                textarea.form-control(name="description", cols="30", rows="3",id="camp-desc",required)= camp.description
+                textarea.form-control(name="campground[description]", cols="30", rows="3",id="camp-desc",required)= camp.description
                 lable.form-lable(for="camp-price") Price
-                input.form-control(type="number",id="camp-price",name="price",required, value= camp.price)
+                input.form-control(type="number",id="camp-price",name="campground[price]",required, value= camp.price)
                 .rating-group.mt-3
                     fieldset.starability-heart
-                        input#no-rate.input-no-rate(type='radio' name='rating' value='0' checked='' aria-label='No rating.')
-                        input#first-rate1(type='radio' name='rating' value='1')
+                        input#no-rate.input-no-rate(type='radio' name='campground[rating]' value='0' checked='' aria-label='No rating.')
+                        input#first-rate1(type='radio' name='campground[rating]' value='1')
                         label(for='first-rate1' title='Terrible') 1 star
-                        input#first-rate2(type='radio' name='rating' value='2')
+                        input#first-rate2(type='radio' name='campground[rating]' value='2')
                         label(for='first-rate2' title='Not good') 2 stars
-                        input#first-rate3(type='radio' name='rating' value='3')
+                        input#first-rate3(type='radio' name='campground[rating]' value='3')
                         label(for='first-rate3' title='Average') 3 stars
-                        input#first-rate4(type='radio' name='rating' value='4')
+                        input#first-rate4(type='radio' name='campground[rating]' value='4')
                         label(for='first-rate4' title='Very good') 4 stars
-                        input#first-rate5(type='radio' name='rating' value='5')
+                        input#first-rate5(type='radio' name='campground[rating]' value='5')
                         label(for='first-rate5' title='Amazing') 5 stars)
                 .mb-3
                     .form-file.custom-file
-                        input.form-file-input#uploadImg(type='file',name='image',multiple)
+                        input.form-file-input#uploadImg(type='file',name='image]',multiple)
                         label.form-file-label(for='uploadImg') 
                             span.form-file-text.custom-file-label Choose file
                             span.form-file-button Browse
