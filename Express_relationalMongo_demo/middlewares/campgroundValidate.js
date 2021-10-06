@@ -6,6 +6,7 @@ const campgroundSchema = Joi.object({
     campground: Joi.object({
         title: Joi.string().required(),
         location: Joi.string().required(),
+        // image: Joi.string().required(),
         description: Joi.string().required(),
         price: Joi.number().required().min(0),
         rating: Joi.number().required(),
@@ -14,6 +15,7 @@ const campgroundSchema = Joi.object({
 
 // campground validate middleware
 const campgroundValidate = (req, res, next) => {
+    console.log(req.body);
     const { error } = campgroundSchema.validate(req.body);
     console.log(error);
     if (error) {

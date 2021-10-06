@@ -1,5 +1,3 @@
-const mapToken =
-    'pk.eyJ1IjoidGhhbmh0dWFuOTYiLCJhIjoiY2t0NzM0MHpuMG9lbTJvcW5zYTQwOGdmbCJ9.yXoZ7JjKVYp-SfzoEpVu8A';
 mapboxgl.accessToken = `${mapToken}`;
 
 let coords = { lat: '', lon: '' };

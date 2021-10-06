@@ -8,7 +8,7 @@ block links
 block content
     .container-fluid.d-flex.justify-content-center.align-items-center
         .form-container.d-flex.border.rounded.p-3
-            form.m-2(action="/campgrounds/" + camp._id + '?_method=PUT', method="post",form-data='')
+            form.m-2(action="/campgrounds/" + camp._id + '?_method=PUT', method="post",enctype="multipart/form-data")
                 lable.form-lable(for="camp-name") Camp Name
                 input.form-control(type="text",id="camp-name",name="campground[title]",required,value= camp.title)
                 lable.form-lable(for="camp-location") Camp Location
@@ -32,7 +32,7 @@ block content
                         label(for='first-rate5' title='Amazing') 5 stars)
                 .mb-3
                     .form-file.custom-file
-                        input.form-file-input#uploadImg(type='file',name='image]',multiple)
+                        input.form-file-input#uploadImg(type='file',name='image',multiple)
                         label.form-file-label(for='uploadImg') 
                             span.form-file-text.custom-file-label Choose file
                             span.form-file-button Browse

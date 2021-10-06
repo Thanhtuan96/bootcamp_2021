@@ -48,7 +48,7 @@ module.exports = {
             })
             .send();
         const campground = await Campground(req.body.campground);
-        campground.image = req.files.map((f) => ({
+        campground.images = req.files.map((f) => ({
             url: f.path,
             filename: f.filename,
         }));
@@ -67,8 +67,18 @@ module.exports = {
     // put the update of campground and update database
     putUpdate: catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        await Campground.findByIdAndUpdate(id, req.body);
-        res.redirect('/campgrounds');
+        const camp = await Campground.findByIdAndUpdate(id, {
+            ...req.body.campground,
+        });
+
+        const imgs = req.files.map((f) => ({
+            url: f.path,
+            filename: f.filename,
+        }));
+        await camp.images.push(...imgs);
+        await camp.save();
+        req.flash('success', 'Successfully updated campground!');
+        res.redirect(`/campgrounds/${camp._id}`);
     }),
     // delete one campground
     deleteOne: catchAsync(async (req, res, next) => {

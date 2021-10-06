@@ -2,31 +2,32 @@ extends ../layouts/boilertemplate
 
 block links
     link(rel='stylesheet',type='text/css',href='../CSS/star.css')
+    link(rel='stylesheet',type='text/css',href='CSS/campGround.css')
 
 block content
     .container-fluid
-        - success ? h1= success : "";
-        .container-fluid
-            .row
-                .col-md-4.col.mb-5(style='z-index: 1;')
-                    each camp in camps 
-                        .camp-container.bg-light.d-flex.align-items-center.col-md-12.border.border-primary.rounded.py-1.px-2(style='min-height: 350px')
-                            if(camp.image.length)
-                                img.img-thumbnail.m-2(src= camp.image[0].url,style="heigh:10em;width:10em")
-                            else 
-                                img.img-thumbnail.m-2(src='https://res.cloudinary.com/travelnote/image/upload/v1632920949/campgroundImages/hp7dypwp61rdswpsd1mk.png',style="heigh:10em;width:10em;")
-                            .camp-info.flex-grow-1.d-flex.flex-column.align-items-center
-                                h2.text-wrap= camp.title 
-                                p= camp.location
-                                p.text-wrap= camp.description
-                                p= '$' + camp.price + '/ night'
-                                p.starability-result(data-rating= camp.averageRate )= 'Rated: ' + camp.averageRate +' star'
-                                .btn-group
-                                    a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
-                                        .bi.bi-three-dots Details 
-                .col-md-7.col
-                    #map(style='width: 100%; height: 100%; position: fixed;z-index: 1;')
+        -success ? h1= success : "";
+        .row.row-cols-1.row-cols-sm-1.row-cols-md-2
+            .col-md-4.col.mb-5.order-md-1.order-sm-2(style='z-index: 3;')
+                each camp in camps 
+                    .camp-container.bg-light.d-flex.align-items-center.col-md-12.border.border-primary.rounded.py-1.px-2(style='min-height: 350px')
+                        if(camp.images.length)
+                            img.img-thumbnail.m-2(src= camp.images[0].url,style="heigh:10em;width:10em")
+                        else 
+                            img.img-thumbnail.m-2(src='https://res.cloudinary.com/travelnote/image/upload/v1632920949/campgroundImages/hp7dypwp61rdswpsd1mk.png',style="heigh:10em;width:10em;")
+                        .camp-info.flex-grow-1.d-flex.flex-column.align-items-center
+                            h2.text-wrap= camp.title 
+                            p= camp.location
+                            p.text-wrap= camp.description
+                            p= '$' + camp.price + '/ night'
+                            p.starability-result(data-rating= camp.averageRate )= 'Rated: ' + camp.averageRate +' star'
+                            .btn-group
+                                a.btn.btn-outline-primary(href="/campgrounds/" + camp._id ) 
+                                    .bi.bi-three-dots Details 
+            .col-md-8.col.order-md-2.order-sm-1.map-container
+                #map.col-12
     //- script(src="/JS/showMainMap.js") 
     script.
+        const mapToken = !{process.env.MAP_TOKEN}
         const currentCamps = !{JSON.stringify(camps)}
     script(src="/JS/clusterMap.js") 

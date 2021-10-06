@@ -20,7 +20,12 @@ router
 router.get('/new', isLoggedIn, campgroundCRUD.getCreateForm);
 router
     .route('/:id')
-    .put(campgroundValidate, isLoggedIn, campgroundCRUD.putUpdate) // PUT: update selected camp
+    .put(
+        isLoggedIn,
+        upload.array('image'),
+        campgroundValidate,
+        campgroundCRUD.putUpdate
+    ) // PUT: update selected camp
     .get(isLoggedIn, campgroundCRUD.getOne) // GET: get specific camp
     .delete(isLoggedIn, campgroundCRUD.deleteOne); //DELETE: delete camp
 

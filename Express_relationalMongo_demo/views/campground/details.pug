@@ -7,11 +7,11 @@ block content
         .container-fluid.mt-2
             .row
                 .camp-container.d-flex.flex-column.justify-content-center.align-items-center.border.border-primary.rounded.py-5.col-md-4.col.me-1(style="height: 100%; position:")
-                    if(camp.image.length)
+                    if(camp.images.length)
                         #carouselExampleControls.carousel.slide(data-bs-ride='carousel')
                             .carousel-inner
-                                each img in camp.image 
-                                    if img.url === camp.image[0].url
+                                each img in camp.images
+                                    if img.url === camp.images[0].url
                                         .carousel-item.active 
                                             img.img-fluid.d-block.w-100(src= img.url,style='max-height: 400px;height: auto')
                                     else
@@ -60,7 +60,7 @@ block content
                             button.btn.btn-primary Summit
                     div.mt-2
                         if camp.reviews.length
-                            .list-reviews(style="width: 100%; max-width:500px;")
+                            .list-reviews(style="width: 100%; ")
                                 each item in camp.reviews 
                                     .list-group-item.d-flex.flex-row.justify-content-between.align-items-center.rounded.m-0
                                         .review.text-wrap

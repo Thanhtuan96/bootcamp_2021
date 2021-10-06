@@ -1,0 +1,25 @@
+* {
+}
+.mapboxgl-map {
+}
+
+@media only screen and (max-width: 650px) {
+    #map {
+        flex-grow: 1;
+        height: 350px;
+        position: fixed;
+        z-index: 4;
+    }
+
+    .map-container {
+        z-index: 4;
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    #map {
+        height: 100%;
+        z-index: 2;
+        position: fixed;
+    }
+}

@@ -40,8 +40,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
+    console.log(req.session);
     res.locals.currentUser = req.user;
-    res.locals.env = process.env;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
@@ -62,11 +62,6 @@ app.get('/home', async (req, res) => {
     res.render('home');
 });
 
-// handle page not found
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404));
-});
-
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     console.log(err);
@@ -75,6 +70,14 @@ app.use((err, req, res, next) => {
     }
     res.status(statusCode).render('error', { err });
 });
+
+// handle page not found
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+});
+
 app.listen(port, () => {
     console.log(`Listening from ${port}`);
 });
+// try to make new feature using another branch
+// add map to the app and show camp into page
