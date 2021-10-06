@@ -62,11 +62,6 @@ app.get('/home', async (req, res) => {
     res.render('home');
 });
 
-// handle page not found
-app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404));
-});
-
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     console.log(err);
@@ -75,6 +70,12 @@ app.use((err, req, res, next) => {
     }
     res.status(statusCode).render('error', { err });
 });
+
+// handle page not found
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+});
+
 app.listen(port, () => {
     console.log(`Listening from ${port}`);
 });

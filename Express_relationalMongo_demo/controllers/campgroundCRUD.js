@@ -5,16 +5,23 @@ const ExpressError = require('../utils/ExpressError');
 const Joi = require('joi');
 const passport = require('passport');
 const averageRateCalculate = require('../middlewares/logicMiddleware');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 
 module.exports = {
     //get all campground endpoint
     getAll: catchAsync(async (req, res, next) => {
         const camps = await Campground.find({}).populate('reviews');
+        const mapboxToken = process.env.MAPBOX_TOKEN;
+
+        camps.forEach((camp) => {
+            camp.averageRate = averageRateCalculate(camp);
+        });
 
         if (!camps) {
             throw new ExpressError('Product Not Found', 404);
         }
-        res.render('campground/show', { camps });
+        res.render('campground/show', { camps, mapboxToken });
     }),
     //get one campground endpoint
     getOne: catchAsync(async (req, res, next) => {
@@ -22,28 +29,33 @@ module.exports = {
         const camp = await Campground.findById(id)
             .populate('reviews')
             .populate('author', 'username');
-
-        let averageRate = averageRateCalculate(camp);
-
+        camp.averageRate = averageRateCalculate(camp);
         if (!camp) {
             throw new ExpressError('Product Not Found', 404);
         }
-        res.render('campground/details', { camp, averageRate });
+        res.render('campground/details', { camp });
     }),
     // get create campground form
-    getNewForm: catchAsync(async (req, res, next) => {
+    getCreateForm: catchAsync(async (req, res, next) => {
         res.render('campground/create');
     }),
     //post new campground and create one in database
-    postNew: catchAsync(async (req, res, next) => {
+    postCreatedCamp: catchAsync(async (req, res, next) => {
+        const geoData = await geocoder
+            .forwardGeocode({
+                query: req.body.campground.location,
+                limit: 1,
+            })
+            .send();
         const campground = await Campground(req.body.campground);
-        campground.image = req.files.map((f) => ({
+        campground.images = req.files.map((f) => ({
             url: f.path,
             filename: f.filename,
         }));
         campground.author = req.user._id;
+        campground.geometry = geoData.body.features[0].geometry;
         campground.save();
-        res.redirect(`/campgrounds/${campground._id}`);
+        res.redirect(`/campgrounds/${campground.id}`);
     }),
     // get Edit campground form
     getEditForm: catchAsync(async (req, res, next) => {
@@ -55,8 +67,18 @@ module.exports = {
     // put the update of campground and update database
     putUpdate: catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        await Campground.findByIdAndUpdate(id, req.body);
-        res.redirect('/campgrounds');
+        const camp = await Campground.findByIdAndUpdate(id, {
+            ...req.body.campground,
+        });
+
+        const imgs = req.files.map((f) => ({
+            url: f.path,
+            filename: f.filename,
+        }));
+        await camp.images.push(...imgs);
+        await camp.save();
+        req.flash('success', 'Successfully updated campground!');
+        res.redirect(`/campgrounds/${camp._id}`);
     }),
     // delete one campground
     deleteOne: catchAsync(async (req, res, next) => {
